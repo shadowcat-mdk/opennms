@@ -162,7 +162,6 @@
         </dependency>
 
         <!-- OSGi Dependencies -->
-
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.core</artifactId>
@@ -178,10 +177,10 @@
         <dependency>
             <groupId>org.ops4j.pax.vaadin</groupId>
             <artifactId>service</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <!-- Vaadin Dependencies -->
-
         <dependency>
             <groupId>org.opennms.osgi</groupId>
             <artifactId>opennms-osgi-core</artifactId>

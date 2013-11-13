@@ -1,16 +1,7 @@
 package org.opennms.features.backup.client.api;
 
-import org.exolab.castor.xml.MarshalException;
-import org.exolab.castor.xml.ValidationException;
-import org.opennms.core.utils.ConfigFileConstants;
-import org.opennms.core.xml.CastorUtils;
-import org.opennms.netmgt.config.opennmsDataSources.DataSourceConfiguration;
-import org.opennms.netmgt.config.opennmsDataSources.JdbcDataSource;
-
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 public class BackupDbUtil {
     /**
@@ -75,35 +66,35 @@ public class BackupDbUtil {
     }
 
     private void loadDatabaseConfig() {
-        try {
-            InputStream inputStream;
-
-            if (m_databaseConfigFilename != null) {
-                inputStream = new FileInputStream(m_databaseConfigFilename);
-            } else {
-                inputStream = new FileInputStream(ConfigFileConstants.getFile(ConfigFileConstants.OPENNMS_DATASOURCE_CONFIG_FILE_NAME));
-            }
-
-            DataSourceConfiguration dataSourceConfiguration = CastorUtils.unmarshal(DataSourceConfiguration.class, inputStream);
-
-            for (JdbcDataSource jdbcDataSource : dataSourceConfiguration.getJdbcDataSource()) {
-                if ("opennms".equals(jdbcDataSource.getName())) {
-                    setDatabaseUsername(jdbcDataSource.getUserName());
-                    setDatabasePassword(jdbcDataSource.getPassword());
-                    setDatabaseName(jdbcDataSource.getDatabaseName());
-                    String hostColonPort[] = jdbcDataSource.getUrl().split("//")[1].split("/")[0].split(":");
-                    setDatabaseHost(hostColonPort[0]);
-                    setDatabasePort(hostColonPort[1]);
-                }
-            }
-            inputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (MarshalException e) {
-            e.printStackTrace();
-        } catch (ValidationException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            InputStream inputStream;
+//
+//            if (m_databaseConfigFilename != null) {
+//                inputStream = new FileInputStream(m_databaseConfigFilename);
+//            } else {
+//                inputStream = new FileInputStream(ConfigFileConstants.getFile(ConfigFileConstants.OPENNMS_DATASOURCE_CONFIG_FILE_NAME));
+//            }
+//
+//            DataSourceConfiguration dataSourceConfiguration = CastorUtils.unmarshal(DataSourceConfiguration.class, inputStream);
+//
+//            for (JdbcDataSource jdbcDataSource : dataSourceConfiguration.getJdbcDataSource()) {
+//                if ("opennms".equals(jdbcDataSource.getName())) {
+//                    setDatabaseUsername(jdbcDataSource.getUserName());
+//                    setDatabasePassword(jdbcDataSource.getPassword());
+//                    setDatabaseName(jdbcDataSource.getDatabaseName());
+//                    String hostColonPort[] = jdbcDataSource.getUrl().split("//")[1].split("/")[0].split(":");
+//                    setDatabaseHost(hostColonPort[0]);
+//                    setDatabasePort(hostColonPort[1]);
+//                }
+//            }
+//            inputStream.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (MarshalException e) {
+//            e.printStackTrace();
+//        } catch (ValidationException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public void createDump() throws IOException, InterruptedException {

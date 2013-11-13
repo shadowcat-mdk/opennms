@@ -27,16 +27,17 @@
  *******************************************************************************/
 package org.opennms.features.backup.client.ui;
 
-import com.opennms.saas.endpoint.backup.api.model.BackupConfig;
-import com.opennms.saas.endpoint.backup.api.model.BackupInfo;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.server.VaadinRequest;
-import com.vaadin.ui.*;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.TreeTable;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
 import org.opennms.features.backup.client.api.BackupClient;
 import org.opennms.features.backup.client.api.LocalBackupConfig;
-
-import java.util.List;
 
 /**
  * The wallboard application's "main" class
@@ -168,15 +169,15 @@ public class BackupUI extends UI {
         localBackupConfig.setMaxConcurrentUploads(4);
 
         m_backupClient = new BackupClient(localBackupConfig);
-        BackupConfig backupConfig = m_backupClient.lookupBackupConfig();
-        List<BackupInfo> backupinfoList = m_backupClient.list(backupConfig);
-
-        rightBackupsTable.removeAllItems();
-
-        for (BackupInfo backupInfo : backupinfoList) {
-            rightBackupsTable.addItem(backupInfo.getId());
-            rightBackupsTable.setItemCaption(backupInfo.getId(), backupInfo.getFileInfo().getCreated().toString());
-        }
+//        BackupConfig backupConfig = m_backupClient.lookupBackupConfig();
+//        List<BackupInfo> backupinfoList = m_backupClient.list(backupConfig);
+//
+//        rightBackupsTable.removeAllItems();
+//
+//        for (BackupInfo backupInfo : backupinfoList) {
+//            rightBackupsTable.addItem(backupInfo.getId());
+//            rightBackupsTable.setItemCaption(backupInfo.getId(), backupInfo.getFileInfo().getCreated().toString());
+//        }
 
     }
 
